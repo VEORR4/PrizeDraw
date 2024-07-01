@@ -8,6 +8,20 @@ const tooltip = document.querySelector(".tooltip") // tooltip
 var winnersList = document.getElementById("winners-list") // Lista de vencedores
 var closeModalBtn = document.getElementById("close-modal") // Botão de fechar modal
 
+// Função para adicionar participantes
+function adicionarParticipantes() {
+     var participantes = adicionar.value.split(";")
+     var participantesSalvos = localStorage.getItem("participantes")
+     if(participantesSalvos) {
+          participantes = participantesSalvos.split(",").concat(participantes)
+     }
+     // Converter para letras maiúsculas e remover espaços extras
+     participantes = participantes.map((p) => p.trim().toUpperCase())
+     if(participantes)
+     localStorage.setItem("participantes", participantes.join(","))
+     adicionar.value = ""
+     exibirParticipantes()
+}
 
 // Função para exibir participantes na tabela
 function exibirParticipantes() {
@@ -37,19 +51,7 @@ function exibirParticipantes() {
      }
 }
 
-// Função para adicionar participantes
-function adicionarParticipantes() {
-     var participantes = adicionar.value.split(";")
-     var participantesSalvos = localStorage.getItem("participantes")
-     if(participantesSalvos) {
-          participantes = participantesSalvos.split(",").concat(participantes)
-     }
-     // Converter para letras maiúsculas e remover espaços extras
-     participantes = participantes.map((p) => p.trim().toUpperCase())
-     localStorage.setItem("participantes", participantes.join(","))
-     adicionar.value = ""
-     exibirParticipantes()
-}
+
 
 // Função para realizar o sorteio
 function sortear() {
