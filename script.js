@@ -41,7 +41,7 @@ function exibirParticipantes() {
 function adicionarParticipantes() {
      var participantes = adicionar.value.split(";")
      var participantesSalvos = localStorage.getItem("participantes")
-     if (participantesSalvos) {
+     if(participantesSalvos) {
           participantes = participantesSalvos.split(",").concat(participantes)
      }
      // Converter para letras maiúsculas e remover espaços extras
@@ -60,10 +60,6 @@ function sortear() {
           while (sorteados.length < 20 && participantes.length > 0) {
                var index = Math.floor(Math.random() * participantes.length)
                var sorteado = participantes.splice(index, 1)[0]
-               if (adicionar.value = sorteado){
-               //      alert(adicionar.value)
-                    sorteados.push(sorteado)
-               }
           }
           winnersList.innerHTML = ""
           sorteados.forEach((w) => {
@@ -74,6 +70,11 @@ function sortear() {
           document.querySelector(".modal").style.display = "block"
      }
 }
+
+//Remover todos os participantes (Clear)
+clear.addEventListener("click", ()=>{
+     localStorage.setItem("participantes", 0)
+})
 
 
 // Função para fechar o modal
